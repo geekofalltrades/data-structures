@@ -208,7 +208,10 @@ class TestSearchFunction(unittest.TestCase):
 class TestRemoveFunction(unittest.TestCase):
     """Test the LinkedList's remove method."""
     def setUp(self):
-        pass
+        self.insert_string = 'bob'
+        self.insert_int = 14
+        self.insert_float = 3.14
+        self.value_not_in_list = 'frank'
 
     def test_remove_empty_list(self):
         """Remove from an empty LinkedList."""
@@ -216,23 +219,46 @@ class TestRemoveFunction(unittest.TestCase):
     def test_remove_list_without_value(self):
         """Remove from a populated LinkedList a value it doesn't contain."""
 
-    def test_remove_list_with_value(self):
-        """Remove from a populated LinkedList a value it contains."""
+    def test_remove_list_with_value_at_head(self):
+        """Remove from a populated LinkedList a value it contains at its head."""
+
+    def test_remove_list_with_value_in_middle(self):
+        """Remove from a populated LinkedList a value it contains in its middle."""
+
+    def test_remove_list_with_value_at_tail(self):
+        """Remove from a populated LinkedList a value it contains at its tail."""
 
 
 class TestStrFunction(unittest.TestCase):
     """Test the LinkedList's ___str___ method."""
     def setUp(self):
-        pass
+        self.insert_string = 'bob'
+        self.insert_int = 14
+        self.insert_float = 3.14
 
     def test_str_empty_list(self):
         """Get the string representation of an empty LinkedList."""
+        ll = LinkedList()
+
+        self.assertEqual(ll.__str__(), '()')
 
     def test_str_one_list(self):
         """Get the string representation of a LinkedList with one value."""
+        ll = LinkedList()
+        ll.insert(self.insert_float)
+
+        self.assertEqual(ll.__str__(), '(' + str(self.insert_float) + ')')
 
     def test_str_many_list(self):
         """Get the string representation of a LinkedList with many values."""
+        ll = LinkedList()
+        ll.insert(self.insert_float)
+        ll.insert(self.insert_int)
+        ll.insert(self.insert_string)
+
+        self.assertEqual(ll.__str__(), '(' + "'" + self.insert_string +
+            "', " + str(self.insert_int) + ', ' + str(self.insert_float) +
+            ')')
 
 
 if __name__ == '__main__':
