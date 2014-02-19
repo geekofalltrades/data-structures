@@ -5,13 +5,20 @@ class LinkedList(object):
         self.head = None
 
     def __str__(self):
-        retval = []
+        retval = '('
         nextnode = self.head
-        while nextnode is not None:
-            retval.append(nextnode.value)
+        while nextnode:
+            if isinstance(nextnode.value, str):
+                retval += "'" + nextnode.value + "'"
+            else:
+                retval += str(nextnode.value)
+
+            if nextnode.next:
+                retval += ', '
+
             nextnode = nextnode.next
 
-        return retval
+        return retval + ')'
 
     def insert(self, item):
         self.head = LinkedListNode(item, self.head)
@@ -41,15 +48,16 @@ class LinkedList(object):
     def remove(self, item):
         thisnode = self.head
         lastnode = None
-        while thisnode is not None:
+        while thisnode:
             if thisnode.value == item:
-                #If this was the first item in the LinkedList
-                if lastnode is None:
+                #If this was the first item in the LinkedList.
+                if not lastnode:
                     self.head = thisnode.next
-                #Otherwise, this was not the first item in the LinkedList
+                #Otherwise, this was not the first item in the LinkedList.
                 else:
                     lastnode.next = thisnode.next
                 break
+            lastnode = thisnode
             thisnode = thisnode.next
 
 
