@@ -1,4 +1,4 @@
-from linked_list import LinkedList
+from linked_list import LinkedList, LinkedListNode
 import unittest
 
 
@@ -100,7 +100,6 @@ class TestPopFunction(unittest.TestCase):
         self.assertTrue(node is None)
         self.assertTrue(ll.head is None)
 
-
     def test_pop_from_one_list(self):
         """Pop from a LinkedList with one node."""
         ll = LinkedList()
@@ -150,16 +149,60 @@ class TestSizeFunction(unittest.TestCase):
 class TestSearchFunction(unittest.TestCase):
     """Test the LinkedList's search method."""
     def setUp(self):
-        pass
+        self.insert_string = 'bob'
+        self.insert_int = 14
+        self.insert_float = 3.14
+        self.value_not_in_list = 'frank'
 
     def test_search_empty_list(self):
         """Search for a value in an empty LinkedList."""
+        ll = LinkedList()
+
+        node = ll.search(self.insert_string)
+        self.assertTrue(node is None)
 
     def test_search_list_without_value(self):
         """Search a populated LinkedList for a value it doesn't contain."""
+        ll = LinkedList()
+        ll.insert(self.insert_float)
+        ll.insert(self.insert_int)
+        ll.insert(self.insert_string)
 
-    def test_serach_list_with_value(self):
-        """Search a populated LinkedList for a value it contains."""
+        node = ll.search(self.value_not_in_list)
+        self.assertTrue(node is None)
+
+    def test_search_list_with_value_at_head(self):
+        """Search a populated LinkedList for a value it contains at its head."""
+        ll = LinkedList()
+        ll.insert(self.insert_float)
+        ll.insert(self.insert_int)
+        ll.insert(self.insert_string)
+
+        node = ll.search(self.insert_string)
+        self.assertTrue(isinstance(node, LinkedListNode))
+        self.assertEqual(node.value, self.insert_string)
+
+    def test_search_list_with_value_in_middle(self):
+        """Search a populated LinkedList for a value it contains in its middle."""
+        ll = LinkedList()
+        ll.insert(self.insert_float)
+        ll.insert(self.insert_int)
+        ll.insert(self.insert_string)
+
+        node = ll.search(self.insert_int)
+        self.assertTrue(isinstance(node, LinkedListNode))
+        self.assertEqual(node.value, self.insert_int)
+
+    def test_search_list_with_value_at_tail(self):
+        """Search a populated LinkedList for a value it contains at its tail."""
+        ll = LinkedList()
+        ll.insert(self.insert_float)
+        ll.insert(self.insert_int)
+        ll.insert(self.insert_string)
+
+        node = ll.search(self.insert_float)
+        self.assertTrue(isinstance(node, LinkedListNode))
+        self.assertEqual(node.value, self.insert_float)
 
 
 class TestRemoveFunction(unittest.TestCase):
