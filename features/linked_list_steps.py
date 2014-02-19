@@ -10,12 +10,7 @@ def empty_list(step):
     world.linkedlist = LinkedList()
 
 
-@step('And value (\w+) to be added')
-def empty_list_value(step, value):
-    world.value = value
-
-
-@step("X's head node's value is (\w+) and next is None")
+@step("X's head node's value is (.+) and next is None")
 def empty_list_result(step, expected):
     assert world.linkedlist.head.value == expected, \
         "Got %s" % world.linkedlist.head.value
@@ -24,18 +19,13 @@ def empty_list_result(step, expected):
 
 
 #Checking a populated LinkedList:
-@step('a LinkedList X with a head node with value (\w+)')
+@step('a LinkedList X with a head node with value (.+)')
 def populated_list(step, value):
     world.linkedlist = LinkedList()
     world.linkedlist.insert(value)
 
 
-@step('And value (\w+) to be added')
-def populated_list_value(step, value):
-    world.value = value
-
-
-@step("X's head node's value is (\w+) and next is a node with value (\w+)")
+@step("X's head node's value is (.+) and next is a node with value (.+)")
 def populated_list_result(step, headval, nextval):
     assert world.linkedlist.head.value == headval, \
         "Got %s" % world.linkedlist.head.value
@@ -43,8 +33,8 @@ def populated_list_result(step, headval, nextval):
         "Got %s" % world.linkedlist.head.next.value
 
 
-@step('And value (\w+) to be added')
-def generic_value(step, value):
+@step('And value (.+) to be added')
+def value_to_add(step, value):
     world.value = value
 
 
