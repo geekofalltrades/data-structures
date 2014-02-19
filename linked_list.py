@@ -43,7 +43,6 @@ class LinkedList(object):
             if thisnode.value == item:
                 return thisnode
             thisnode = thisnode.next
-        return None
 
     def remove(self, item):
         thisnode = self.head
