@@ -60,6 +60,9 @@ class LinkedList(object):
             lastnode = thisnode
             thisnode = thisnode.next
 
+    def write(self):
+        print(self.__str__())
+
 
 class LinkedListNode(object):
     def __init__(self, value=None, nextnode=None):
