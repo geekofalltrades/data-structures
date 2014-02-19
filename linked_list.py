@@ -31,7 +31,7 @@ class LinkedList(object):
     def size(self):
         ct = 0
         thisnode = self.head
-        while thisnode is not None:
+        while thisnode:
             thisnode = thisnode.next
             ct += 1
 
@@ -39,7 +39,7 @@ class LinkedList(object):
 
     def search(self, item):
         thisnode = self.head
-        while thisnode is not None:
+        while thisnode:
             if thisnode.value == item:
                 return thisnode
             thisnode = thisnode.next
