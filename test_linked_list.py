@@ -126,13 +126,25 @@ class TestPopFunction(unittest.TestCase):
 class TestSizeFunction(unittest.TestCase):
     """Test the LinkedList's size method."""
     def setUp(self):
-        pass
+        self.insert_string = 'bob'
+        self.insert_int = 14
+        self.insert_float = 3.14
 
     def test_size_of_empty_list(self):
         """Get the size of an empty LinkedList."""
+        ll = LinkedList()
+        self.assertTrue(ll.head is None)
+        self.assertEqual(ll.size(), 0)
 
     def test_size_of_populated_list(self):
         """Get the size of a populated LinkedList."""
+        ll = LinkedList()
+        ll.insert(self.insert_float)
+        ll.insert(self.insert_int)
+        ll.insert(self.insert_string)
+
+        self.assertEqual(ll.head.value, self.insert_string)
+        self.assertEqual(ll.size(), 3)
 
 
 class TestSearchFunction(unittest.TestCase):
