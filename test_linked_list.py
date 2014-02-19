@@ -215,18 +215,62 @@ class TestRemoveFunction(unittest.TestCase):
 
     def test_remove_empty_list(self):
         """Remove from an empty LinkedList."""
+        ll = LinkedList()
+        prestring = ll.__str__()
+        ll.remove(self.insert_float)
+        poststring = ll.__str__()
+        self.assertEqual(prestring, poststring)
 
     def test_remove_list_without_value(self):
         """Remove from a populated LinkedList a value it doesn't contain."""
+        ll = LinkedList()
+        ll.insert(self.insert_float)
+        ll.insert(self.insert_int)
+        ll.insert(self.insert_string)
+
+        prestring = ll.__str__()
+        ll.remove(self.value_not_in_list)
+        poststring = ll.__str__()
+        self.assertEqual(prestring, poststring)
 
     def test_remove_list_with_value_at_head(self):
         """Remove from a populated LinkedList a value it contains at its head."""
+        ll = LinkedList()
+        ll.insert(self.insert_float)
+        ll.insert(self.insert_int)
+        ll.insert(self.insert_string)
+
+        ll.remove(self.insert_string)
+        expected = '(' + str(self.insert_int) + ', ' + \
+            str(self.insert_float) + ')'
+        poststring = ll.__str__()
+        self.assertEqual(expected, poststring)
 
     def test_remove_list_with_value_in_middle(self):
         """Remove from a populated LinkedList a value it contains in its middle."""
+        ll = LinkedList()
+        ll.insert(self.insert_float)
+        ll.insert(self.insert_int)
+        ll.insert(self.insert_string)
+
+        ll.remove(self.insert_int)
+        expected = '(' + "'" + self.insert_string + "'" + ', ' + \
+            str(self.insert_float) + ')'
+        poststring = ll.__str__()
+        self.assertEqual(expected, poststring)
 
     def test_remove_list_with_value_at_tail(self):
         """Remove from a populated LinkedList a value it contains at its tail."""
+        ll = LinkedList()
+        ll.insert(self.insert_float)
+        ll.insert(self.insert_int)
+        ll.insert(self.insert_string)
+
+        ll.remove(self.insert_float)
+        expected = '(' + "'" + self.insert_string + "'" + ', ' + \
+            str(self.insert_int) + ')'
+        poststring = ll.__str__()
+        self.assertEqual(expected, poststring)
 
 
 class TestStrFunction(unittest.TestCase):
