@@ -17,32 +17,46 @@ class LinkedList(object):
         self.head = LinkedListNode(item, self.head)
 
     def pop(self):
-        pass
+        popped = self.head
+        self.head = self.head.next
+        return popped
 
     def size(self):
         ct = 0
-        nextnode = self.head
-        while nextnode is not None:
-            nextnode = nextnode.next
+        thisnode = self.head
+        while thisnode is not None:
+            thisnode = thisnode.next
             ct += 1
 
         return ct
 
     def search(self, item):
-        nextnode = self.head
-        while nextnode is not None:
-            if nextnode.value == item:
-                return True
-        return False
+        thisnode = self.head
+        while thisnode is not None:
+            if thisnode.value == item:
+                return thisnode
+        return None
 
     def remove(self, item):
-        pass
+        thisnode = self.head
+        lastnode = None
+        while thisnode is not None:
+            if thisnode.value == item:
+                #If this was the first item in the LinkedList
+                if lastnode is None:
+                    self.head = thisnode.next
+                #Otherwise, this was not the first item in the LinkedList
+                else:
+                    lastnode.next = thisnode.next
 
 
 class LinkedListNode(object):
     def __init__(self, value=None, nextnode=None):
         self.value = value
         self.next = nextnode
+
+    def __str__(self):
+        return str(self.value)
 
 
 if __name__ == '__main__':
