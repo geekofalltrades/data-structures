@@ -88,19 +88,40 @@ class TestInsertFunction(unittest.TestCase):
 class TestPopFunction(unittest.TestCase):
     """Test the LinkedList's pop method."""
     def setUp(self):
-        pass
+        self.insert_string = 'bob'
+        self.insert_int = 14
+        self.insert_float = 3.14
 
     def test_pop_from_empty_list(self):
         """Pop from a LinkedList that is empty."""
-        pass
+        ll = LinkedList()
+        self.assertTrue(ll.head is None)
+        node = ll.pop()
+        self.assertTrue(node is None)
+        self.assertTrue(ll.head is None)
+
 
     def test_pop_from_one_list(self):
         """Pop from a LinkedList with one node."""
-        pass
+        ll = LinkedList()
+        ll.insert(self.insert_string)
+        self.assertEqual(ll.head.value, self.insert_string)
+        node = ll.pop()
+        self.assertEqual(node.value, self.insert_string)
+        self.assertTrue(ll.head is None)
 
     def test_pop_from_many_list(self):
         """Pop from a LinkedList with many nodes."""
-        pass
+        ll = LinkedList()
+        ll.insert(self.insert_float)
+        ll.insert(self.insert_int)
+        ll.insert(self.insert_string)
+
+        self.assertEqual(ll.head.value, self.insert_string)
+        node = ll.pop()
+        self.assertEqual(node.value, self.insert_string)
+        self.assertEqual(ll.head.value, self.insert_int)
+
 
 class TestSizeFunction(unittest.TestCase):
     """Test the LinkedList's size method."""
@@ -149,13 +170,13 @@ class TestStrFunction(unittest.TestCase):
     def setUp(self):
         pass
 
-    def test_str_empty_list():
+    def test_str_empty_list(self):
         """Get the string representation of an empty LinkedList."""
 
-    def test_str_one_list():
+    def test_str_one_list(self):
         """Get the string representation of a LinkedList with one value."""
 
-    def test_str_many_list():
+    def test_str_many_list(self):
         """Get the string representation of a LinkedList with many values."""
 
 

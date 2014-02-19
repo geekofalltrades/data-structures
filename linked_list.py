@@ -25,7 +25,7 @@ class LinkedList(object):
 
     def pop(self):
         popped = self.head
-        self.head = self.head.next
+        self.head = self.head.next if self.head else None
         return popped
 
     def size(self):
