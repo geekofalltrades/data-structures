@@ -35,6 +35,7 @@ class LinkedList(object):
         while thisnode is not None:
             if thisnode.value == item:
                 return thisnode
+            thisnode = thisnode.next
         return None
 
     def remove(self, item):
@@ -48,6 +49,8 @@ class LinkedList(object):
                 #Otherwise, this was not the first item in the LinkedList
                 else:
                     lastnode.next = thisnode.next
+                break
+            thisnode = thisnode.next
 
 
 class LinkedListNode(object):
