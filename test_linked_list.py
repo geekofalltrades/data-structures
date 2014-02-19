@@ -84,5 +84,25 @@ class TestInsertFunction(unittest.TestCase):
         self.assertEqual(ll.head.next.value, self.insert_string)
 
 
+class TestPopFunction(unittest.TestCase):
+    pass
+
+
+class TestSizeFunction(unittest.TestCase):
+    pass
+
+
+class TestSearchFunction(unittest.TestCase):
+    pass
+
+
+class TestRemoveFunction(unittest.TestCase):
+    pass
+
+
+class TestStrFunction(unittest.TestCase):
+    pass
+
+
 if __name__ == '__main__':
     unittest.main()
