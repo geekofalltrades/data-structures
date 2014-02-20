@@ -1,10 +1,45 @@
 import unittest
-from stack import stack
+from stack import Stack
 
 
 class TestPush(unittest.TestCase):
-    pass
+    """Test the push function of the stack."""
+    def setUp(self):
+        self.values = ['bob', 'fred', range(3), 3.14]
+        self.single_value = 'teststring'
+
+    def test_push_to_empty_stack(self):
+        """Push a value to an empty stack."""
+        s = Stack()
+        self.assertTrue(s.head is None)
+        s.push(self.single_value)
+        self.assertEqual(s.head.value, self.single_value)
+        self.assertTrue(isinstance(s.head.value, type(self.single_value)))
+
+    def test_push_to_populated_stack(self):
+        """Push a value to a populated stack."""
+        s = Stack()
+        self.assertTrue(s.head is None)
+        for val in self.values:
+            s.push(val)
+        self.assertEqual(s.head.value, self.values[-1])
+        self.assertTrue(isinstance(s.head.value, type(self.values[-1])))
 
 
 class TestPop(unittest.TestCase):
-    pass
+    """Test the pop function of the stack."""
+    def setUp(self):
+        self.values = ['bob', 'fred', range(3), 3.14]
+        self.single_value = 'teststring'
+
+    def test_pop_from_empty_stack(self):
+        """Pop a value from an empty stack."""
+        pass
+
+    def test_pop_from_populated_stack(self):
+        """Pop a value from a populated stack."""
+        pass
+
+
+if __name__ == '__main__':
+    unittest.main()
