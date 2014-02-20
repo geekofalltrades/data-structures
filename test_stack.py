@@ -34,11 +34,18 @@ class TestPop(unittest.TestCase):
 
     def test_pop_from_empty_stack(self):
         """Pop a value from an empty stack."""
-        pass
+        s = Stack()
+        self.assertTrue(s.head is None)
+        popped = s.pop()
+        self.assertTrue(popped is None)
 
     def test_pop_from_populated_stack(self):
         """Pop a value from a populated stack."""
-        pass
+        s = Stack()
+        s.push(self.single_value)
+        popped = s.pop()
+        self.assertEqual(popped, self.single_value)
+        self.assertTrue(isinstance(popped, type(self.single_value)))
 
 
 if __name__ == '__main__':
