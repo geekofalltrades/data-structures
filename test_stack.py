@@ -1,5 +1,5 @@
 import unittest
-from stack import Stack
+from stack import Stack, EmptyError
 
 
 class TestPush(unittest.TestCase):
@@ -36,8 +36,7 @@ class TestPop(unittest.TestCase):
         """Pop a value from an empty stack."""
         s = Stack()
         self.assertTrue(s.head is None)
-        popped = s.pop()
-        self.assertTrue(popped is None)
+        self.assertRaises(EmptyError, s.pop)
 
     def test_pop_from_populated_stack(self):
         """Pop a value from a populated stack."""

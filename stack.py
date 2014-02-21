@@ -11,6 +11,8 @@ class Stack(object):
             popped, self.head = self.head, self.head.next
             return popped.value
 
+        raise EmptyError("Attempted to pop from an empty stack.")
+
 
 class StackNode(object):
     """Individual nodes representing data objects stored in the stack."""
@@ -20,3 +22,8 @@ class StackNode(object):
 
     def __str__(self):
         return str(self.value)
+
+
+class EmptyError(LookupError):
+    """Exception raised when the stack is empty."""
+    pass
