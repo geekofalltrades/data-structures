@@ -10,10 +10,12 @@ class Queue(object):
         """Add an object to the head of the queue."""
         oldhead = self.head
         self.head = QueueNode(value, next=oldhead)
+
         if oldhead:
             oldhead.prev = self.head
         else:
             self.tail = self.head
+
         self._size += 1
 
     def dequeue(self):
@@ -25,11 +27,11 @@ class Queue(object):
         self._size -= 1
 
         self.tail = dequeued.prev
-        if dequeued.prev:
-            dequeued.prev.next = None
+        if self.tail:
+            self.tail.next = None
 
         if self.head is dequeued:
-            self.head = self.tail
+            self.head = None
 
         return dequeued.value
 
