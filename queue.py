@@ -1,5 +1,5 @@
 class Queue(object):
-    """A classic queue object."""
+    """A classic queue data structure."""
 
     def __init__(self):
         self.head = None
@@ -8,7 +8,12 @@ class Queue(object):
 
     def queue(self, value):
         """Add an object to the head of the queue."""
-        self.head = QueueNode(value, next=self.head)
+        oldhead = self.head
+        self.head = QueueNode(value, next=oldhead)
+        if oldhead:
+            oldhead.prev = self.head
+        else:
+            self.tail = self.head
         self._size += 1
 
     def dequeue(self):
@@ -20,6 +25,9 @@ class Queue(object):
         self._size -= 1
 
         self.tail = dequeued.prev
+        if dequeued.prev:
+            dequeued.prev.next = None
+
         if self.head is dequeued:
             self.head = self.tail
 
