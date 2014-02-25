@@ -12,3 +12,7 @@ A singly-linked list. Implements the LinkedList class for import.
 stack.py
 ------
 A stack. Implements the Stack class for import.
+
+queue.py
+------
+A queue. Implements the Queue class for import.
