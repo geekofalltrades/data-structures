@@ -84,7 +84,7 @@ class TestHash(unittest.TestCase):
     def test_hash_on_invalid_key(self):
         """Try to hash an invalid key (not a string)."""
         h = HashTable()
-        self.assertRaises(ValueError, h.hash, self.invalid_key)
+        self.assertRaises(TypeError, h.hash, self.invalid_key)
 
     def test_hash_on_valid_key(self):
         """Verify that a string key hashes to the expected value. Somewhat

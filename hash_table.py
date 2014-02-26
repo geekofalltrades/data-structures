@@ -52,5 +52,5 @@ class HashTable(object):
     def hash(self, key):
         """Hash a key, getting out the corresponding bucket number."""
         if not isinstance(key, str):
-            raise ValueError("Attempted to hash a non-string value.")
+            raise TypeError("Attempted to hash a non-string value.")
         return sum([ord(i) for i in list(key)]) % self.size
