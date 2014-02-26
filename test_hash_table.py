@@ -8,19 +8,33 @@ class TestGet(unittest.TestCase):
     """
 
     def setUp(self):
-        pass
-
-    def test_get_from_empty_hash(self):
-        pass
+        self.absent_key = 'NoVal'
+        self.pairs = {'aab': 14, 'aVal': 'blargh', 'nutherVal': 3.14}
+        self.colliding_pair = ('aba', 'iCollide')
+        self.present_pair = ('aab', 14)
 
     def test_get_from_hash_containing_value(self):
-        pass
+        """Get a value from a hash using a key which it contains."""
+        h = HashTable()
+        for key, val in self.pairs:
+            h.set(key, val)
+        self.assertEqual(self.present_pair[1], h.get(self.present_pair[0]))
 
     def test_get_from_hash_not_containing_value(self):
-        pass
+        """Get a value from a hash using a key that it does not contain."""
+        h = HashTable()
+        self.assertRaises(KeyError, h.get, self.absent_key)
 
     def test_get_from_hash_with_collisions(self):
-        pass
+        """Get a value from a hash using a key that collides with another
+        key in the hash.
+        """
+        h = HashTable()
+        for key, val in self.pairs:
+            h.set(key, val)
+        h.set(self.colliding_pair[0], self.colliding_pair[1])
+        self.assertEqual(self.present_pair[1], h.get(self.present_pair[0]))
+        self.assertEqual(self.colliding_pair[1], h.get(self.colliding_pair[0]))
 
 
 class TestSet(unittest.TestCase):
@@ -29,13 +43,22 @@ class TestSet(unittest.TestCase):
     """
 
     def setUp(self):
-        pass
+        self.pairs = {'aab': 14, 'aVal': 'blargh', 'nutherVal': 3.14}
+        self.colliding_pair = ('aba', 'iCollide')
+        self.present_pair = ('aab', 14)
+        self.overwrite_pair = ('aab', 17)
 
     def test_set_on_empty_slot(self):
-        pass
+        """Set a value using a key that hashes to an empty bin."""
+        h = HashTable()
 
     def test_set_on_slot_with_collisions(self):
-        pass
+        """Set a value using a key that hashes to a bin already containing
+        other keys.
+        """
+
+    def test_set_on_existing_key(self):
+        """Set a value using a key that already exists."""
 
 
 class TestHash(unittest.TestCase):
