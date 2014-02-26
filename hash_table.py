@@ -7,14 +7,50 @@ class HashTable(object):
     binning any hashed values that collide.
     """
 
-    def __init__(self):
-        pass
+    def __init__(self, size=16):
+        """Initialize the hash with the specified number of nodes in its
+        internal LinkedList container.
+        """
+        self.size = size
+        self.storage = LinkedList()
+        for i in range(size):
+            self.storage.insert(LinkedList())
 
-    def get(self):
-        pass
+    def get(self, key):
+        """Get the value at the specified key, if it exists."""
+        bucketNo = self.hash(key)
+        bucket = self.storage.head
+        for i in range(1, bucketNo):
+            bucket = bucket.next
 
-    def set(self):
-        pass
+        slot = bucket.val.head
+        while(slot):
+            if slot.val[0] == key:
+                return slot.val[1]
+            slot = slot.next
 
-    def hash(self):
-        pass
+        raise KeyError("No value corresponding to key %s." % key)
+
+    def set(self, key, val):
+        """Set the value at the specified key to val, creating it if it
+        doesn't exist.
+        """
+        bucketNo = self.hash(key)
+        bucket = self.storage.head
+        for i in range(1, bucketNo):
+            bucket = bucket.next
+
+        slot = bucket.val.head
+        while(slot):
+            if slot.val[0] == key:
+                slot.val = (key, val)
+                return
+            slot = slot.next
+
+        bucket.val.insert((key, val))
+
+    def hash(self, key):
+        """Hash a key, getting out the corresponding bucket number."""
+        if not isinstance(key, str):
+            raise ValueError("Attempted to hash a non-string value.")
+        return sum([ord(i) for i in key.split('')]) % self.size
