@@ -16,7 +16,7 @@ class TestGet(unittest.TestCase):
     def test_get_from_hash_containing_value(self):
         """Get a value from a hash using a key which it contains."""
         h = HashTable()
-        for key, val in self.pairs:
+        for key, val in self.pairs.items():
             h.set(key, val)
         self.assertEqual(self.present_pair[1], h.get(self.present_pair[0]))
 
@@ -30,7 +30,7 @@ class TestGet(unittest.TestCase):
         key in the hash.
         """
         h = HashTable()
-        for key, val in self.pairs:
+        for key, val in self.pairs.items():
             h.set(key, val)
         h.set(self.colliding_pair[0], self.colliding_pair[1])
         self.assertEqual(self.present_pair[1], h.get(self.present_pair[0]))
@@ -92,7 +92,7 @@ class TestHash(unittest.TestCase):
         """
         h = HashTable()
         hashed = h.hash(self.valid_key)
-        expected = sum([ord(i) for i in self.valid_key.split('')]) % 16
+        expected = sum([ord(i) for i in list(self.valid_key)]) % 16
         self.assertEqual(hashed, expected)
 
 
