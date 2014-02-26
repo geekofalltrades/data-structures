@@ -23,10 +23,10 @@ class HashTable(object):
         for i in range(1, bucketNo):
             bucket = bucket.next
 
-        slot = bucket.val.head
+        slot = bucket.value.head
         while(slot):
-            if slot.val[0] == key:
-                return slot.val[1]
+            if slot.value[0] == key:
+                return slot.value[1]
             slot = slot.next
 
         raise KeyError("No value corresponding to key %s." % key)
@@ -40,14 +40,14 @@ class HashTable(object):
         for i in range(1, bucketNo):
             bucket = bucket.next
 
-        slot = bucket.val.head
+        slot = bucket.value.head
         while(slot):
-            if slot.val[0] == key:
-                slot.val = (key, val)
+            if slot.value[0] == key:
+                slot.value = (key, val)
                 return
             slot = slot.next
 
-        bucket.val.insert((key, val))
+        bucket.value.insert((key, val))
 
     def hash(self, key):
         """Hash a key, getting out the corresponding bucket number."""
