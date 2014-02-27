@@ -26,3 +26,16 @@ Its internal storage - and the storage of each bin - are implemented as
 LinkedLists, using the LinkedList implemented in this repository. This largely
 defeats the purpose of using a hashtable by removing constant-time lookup, but
 it allows me to build on my previous work.
+
+make_month.py
+------
+Implemented are make_month and DayLookup.
+make_month is a factory function; it takes as arguments a month and a year.
+It returns a DayLookup object which can be queried with a day of the given
+month and reply with what day of the week that day is.
+
+Hashing all the way, baby: given an integer day, the hashing algorithm
+first determines a representation of that day as an integer between 0 and 6,
+where 0-6 correspond to Mo-Su. It then plugs that integer into two separate
+sixth-degree polynomials, which calculate the ordinal values for the two
+characters representing the appropriate day code.
