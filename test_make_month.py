@@ -2,6 +2,7 @@ import unittest
 from make_month import make_month
 from random import randrange
 from calendar import monthrange, weekday
+import time
 
 
 class TestMakeMonth(unittest.TestCase):
@@ -36,6 +37,7 @@ class TestDayLookup(unittest.TestCase):
         month-day sets and verify that DayLookup objects are able to re-
         turn the correct day each time."""
         ct = 0
+        total = 0
         for i in xrange(100):
             year = randrange(1970, 2021)
             month = randrange(1, 13)
@@ -43,11 +45,15 @@ class TestDayLookup(unittest.TestCase):
 
             expected = self.weekdays[weekday(year, month, day)]
             test_month = make_month(year, month)
+            start = time.time()
             got = test_month.day(day)
+            end = time.time()
+            total += end - start
             self.assertEqual(expected, got, "Failed with \
                 %s %s %s : %s != %s; passed %s of 100" % \
                 (year, month, day, expected, got, ct))
             ct += 1
+        print "Ran 100 tests at %f seconds per call to day." % (total / 100)
 
     def test_argue_with_non_int(self):
         """Test that day() raises the appropriate exception when given an
