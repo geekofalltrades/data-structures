@@ -71,7 +71,9 @@ class TestContains(unittest.TestCase):
         """Test whether a heavily populated tree can find a value inserted
         near its end.
         """
-        for i in shuffle(range(1000)):
+        rand = range(1000)
+        shuffle(rand)
+        for i in rand:
             self.b.insert(i)
 
         self.b.insert(1000)
@@ -89,10 +91,12 @@ class TestSize(unittest.TestCase):
 
     def test_size_on_populated_tree(self):
         """Test the size of a populated tree."""
-        for i in shuffle(range(10)):
+        rand = range(1000)
+        shuffle(rand)
+        for i in rand:
             self.b.insert(i)
 
-        self.assertEqual(self.b.size(), 10)
+        self.assertEqual(self.b.size(), 1000)
 
 
 class TestDepth(unittest.TestCase):
@@ -141,7 +145,7 @@ class TestBalance(unittest.TestCase):
     def test_balance_on_left_heavy_tree(self):
         """Retrieve the balance of a tree that is weighted to the left.
         """
-        for i in range(0, 10, -1):
+        for i in range(9, -1, -1):
             self.b.insert(i)
 
         self.assertEqual(self.b.balance(), -9)

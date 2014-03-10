@@ -6,14 +6,20 @@ class BST(object):
 
     def insert(self, val):
         """Insert a value into the binary search tree."""
-        parent = self.head.place(val)
-        if val < parent.val:
-            parent.left = BSTNode(val)
-        elif val > parent.val:
-            parent.right = BSTNode(val)
+        if not self.head:
+            self.head = BSTNode(val)
+        else:
+            parent = self.head.place(val)
+            if val < parent.value:
+                parent.left = BSTNode(val)
+            elif val > parent.value:
+                parent.right = BSTNode(val)
 
     def contains(self, val):
         """Test whether the binary search tree contains a given value."""
+        if not self.head:
+            return False
+
         node = self.head.place(val)
 
         if node.value == val:
@@ -44,9 +50,9 @@ class BST(object):
                 not self.head.right and not self.head.left:
             return 0
         elif not self.head.right:
-            return -(self.head.depth() + 1)
+            return -self.head.depth()
         elif not self.head.left:
-            return self.head.depth() + 1
+            return self.head.depth()
         else:
             return self.head.right.depth() - self.head.left.depth()
 
