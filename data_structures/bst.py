@@ -23,18 +23,32 @@ class BST(object):
 
     def size(self):
         """Get the number of items in the binary search tree."""
-        pass
+        if self.head is None:
+            return 0
+        else:
+            return self.head.size() + 1
 
     def depth(self):
         """Get the depth of the binary search tree."""
-        pass
+        if self.head is None:
+            return 0
+        else:
+            return self.head.depth() + 1
 
     def balance(self):
         """Get the balance of the binary search tree. Positive value for
         a right-heavy tree, a negative value for a left-heavy tree. An
         ideally balanced tree has a balance of 0.
         """
-        pass
+        if not self.head or \
+                not self.head.right and not self.head.left:
+            return 0
+        elif not self.head.right:
+            return -(self.head.depth() + 1)
+        elif not self.head.left:
+            return self.head.depth() + 1
+        else:
+            return self.head.right.depth() - self.head.left.depth()
 
 
 class BSTNode(object):
@@ -49,11 +63,11 @@ class BSTNode(object):
         """Recursively determine the position in the subtree beneath this
         node where a given value lies or should lie.
         """
-        if val < self.value and self.left is None:
+        if val < self.value and not self.left:
             return self
         elif val < self.value:
             return self.left.place(val)
-        elif val > self.value and self.right is None:
+        elif val > self.value and not self.right:
             return self
         elif val > self.value:
             return self.right.place(val)
@@ -66,10 +80,10 @@ class BSTNode(object):
         """
         ct = 0
 
-        if self.right is not None:
+        if self.right:
             ct += self.right.size() + 1
 
-        if self.left is not None:
+        if self.left:
             ct += self.left.size() + 1
 
         return ct
@@ -78,11 +92,11 @@ class BSTNode(object):
         """Recursively determine the depth of the deepest subtree beneath
         this node.
         """
-        if self.right is None and self.left is not None:
+        if not self.right and self.left:
             return self.left.depth() + 1
-        elif self.left is None and self.right is not None:
+        elif not self.left and self.right:
             return self.right.depth() + 1
-        elif self.left is None and self.right is None:
+        elif not self.left and not self.right:
             return 0
         else:
             return max(self.right.depth(), self.left.depth()) + 1
