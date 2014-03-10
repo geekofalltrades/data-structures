@@ -119,25 +119,32 @@ class TestDepth(unittest.TestCase):
 class TestBalance(unittest.TestCase):
     """Test the balance method of the binary search tree class."""
     def setUp(self):
-        pass
+        self.b = BST()
 
     def test_balance_on_empty_tree(self):
         """Retrieve the balance of an empty tree."""
-        pass
+        self.assertEqual(self.b.balance(), 0)
 
     def test_balance_on_head_node(self):
         """Retrieve the balance of a tree with only a head node."""
-        pass
+        self.b.insert(7)
+        self.assertEqual(self.b.balance(), 0)
 
     def test_balance_on_right_heavy_tree(self):
         """Retrieve the balance of a tree that is weighted to the right.
         """
-        pass
+        for i in range(10):
+            self.b.insert(i)
+
+        self.assertEqual(self.b.balance(), 9)
 
     def test_balance_on_left_heavy_tree(self):
         """Retrieve the balance of a tree that is weighted to the left.
         """
-        pass
+        for i in range(0, 10, -1):
+            self.b.insert(i)
+
+        self.assertEqual(self.b.balance(), -9)
 
 
 if __name__ == '__main__':
