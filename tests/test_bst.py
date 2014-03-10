@@ -1,5 +1,6 @@
 import unittest
 from data_structures.bst import BST
+from random import shuffle
 
 
 class TestInsert(unittest.TestCase):
@@ -43,29 +44,38 @@ class TestInsert(unittest.TestCase):
 class TestContains(unittest.TestCase):
     """Test the contains method of the binary search tree class."""
     def setUp(self):
-        pass
+        self.b = BST()
 
     def test_contains_on_empty_tree(self):
         """Test whether an empty tree contains a given value."""
-        pass
+        self.assertEqual(self.b.contains(7), False)
 
     def test_contains_on_head_node(self):
         """Test whether a value at the head node is visible to the
         contains function.
         """
-        pass
+        self.b.insert(7)
+        self.assertEqual(self.b.contains(7), True)
 
     def test_contains_on_lower_node(self):
         """Test whether a value below the head node is visible to the
         contains function.
         """
-        pass
+        self.b.insert(5)
+        self.b.insert(3)
+        self.b.insert(22)
+        self.b.insert(7)
+        self.assertEqual(self.b.contains(7), True)
 
     def test_contains_on_heavily_populated_tree(self):
         """Test whether a heavily populated tree can find a value inserted
         near its end.
         """
-        pass
+        for i in shuffle(range(1000)):
+            self.b.insert(i)
+
+        self.b.insert(1000)
+        self.assertEqual(self.b.contains(1000), True)
 
 
 class TestSize(unittest.TestCase):
