@@ -1,3 +1,5 @@
+import random
+
 class BST(object):
     """A binary search tree."""
 
@@ -106,3 +108,31 @@ class BSTNode(object):
             return 0
         else:
             return max(self.right.depth(), self.left.depth()) + 1
+
+    def get_dot(self):
+        """return the tree with root 'self' as a dot graph for visualization"""
+        return "digraph G{\n%s}" % ("" if self.value is None else (
+            "\t%s;\n%s\n" % (
+                self.value,
+                "\n".join(self._get_dot())
+            )
+        ))
+
+    def _get_dot(self):
+        """recursively prepare a dot graph entry for this node."""
+        if self.left is not None:
+            yield "\t%s -> %s;" % (self.value, self.left.value)
+            for i in self.left._get_dot():
+                yield i
+        elif self.right is not None:
+            r = random.randint(0, 1e9)
+            yield "\tnull%s [shape=point];" % r
+            yield "\t%s -> null%s;" % (self.value, r)
+        if self.right is not None:
+            yield "\t%s -> %s;" % (self.value, self.right.value)
+            for i in self.right._get_dot():
+                yield i
+        elif self.left is not None:
+            r = random.randint(0, 1e9)
+            yield "\tnull%s [shape=point];" % r
+            yield "\t%s -> null%s;" % (self.value, r)
