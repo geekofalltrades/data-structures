@@ -98,19 +98,22 @@ class TestSize(unittest.TestCase):
 class TestDepth(unittest.TestCase):
     """Test the depth method of the binary search tree class."""
     def setUp(self):
-        pass
+        self.b = BST()
 
     def test_depth_on_empty_tree(self):
         """Test the depth of an empty tree."""
-        pass
+        self.assertEqual(self.b.depth(), 0)
 
     def test_depth_on_one_level_tree(self):
         """Test the depth of a tree with one level (a head node)."""
-        pass
+        self.b.insert(7)
+        self.assertEqual(self.b.depth(), 1)
 
     def test_depth_on_two_level_tree(self):
         """Test the depth of a tree with two levels."""
-        pass
+        self.b.insert(7)
+        self.b.insert(10)
+        self.assertEqual(self.b.depth(), 2)
 
 
 class TestBalance(unittest.TestCase):
