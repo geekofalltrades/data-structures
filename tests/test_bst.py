@@ -81,15 +81,18 @@ class TestContains(unittest.TestCase):
 class TestSize(unittest.TestCase):
     """Test the size method of the binary search tree class."""
     def setUp(self):
-        pass
+        self.b = BST()
 
     def test_size_on_empty_tree(self):
         """Test the size of an empty tree."""
-        pass
+        self.assertEqual(self.b.size(), 0)
 
     def test_size_on_populated_tree(self):
         """Test the size of a populated tree."""
-        pass
+        for i in shuffle(range(10)):
+            self.b.insert(i)
+
+        self.assertEqual(self.b.size(), 10)
 
 
 class TestDepth(unittest.TestCase):
