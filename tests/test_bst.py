@@ -1,26 +1,43 @@
 import unittest
+from data_structures.bst import BST
 
 
 class TestInsert(unittest.TestCase):
     """Test the insert method of the binary search tree class."""
     def setUp(self):
-        pass
+        self.b = BST()
 
     def test_insert_into_empty_tree(self):
         """Attempt to insert into an empty tree."""
-        pass
+        self.b.insert(7)
+        self.assertTrue(self.b.head is not None)
+        self.assertEqual(self.b.head.value, 7)
+        self.assertTrue(self.b.head.left is None)
+        self.assertTrue(self.b.head.right is None)
 
     def test_insert_to_left(self):
         """Insert into a tree with a head node a value that should go to
         the left of the head node.
         """
-        pass
+        self.b.insert(7)
+        self.b.insert(4)
+        self.assertEqual(self.b.head.value, 7)
+        self.assertEqual(self.b.head.left.value, 4)
+        self.assertTrue(self.b.head.right is None)
+        self.assertTrue(self.b.head.left.left is None)
+        self.assertTrue(self.b.head.left.right is None)
 
     def test_insert_to_right(self):
         """Insert into a tree with a head node a value that should go to
         the right of the head node.
         """
-        pass
+        self.b.insert(7)
+        self.b.insert(10)
+        self.assertEqual(self.b.head.value, 7)
+        self.assertEqual(self.b.head.right.value, 10)
+        self.assertTrue(self.b.head.left is None)
+        self.assertTrue(self.b.head.right.left is None)
+        self.assertTrue(self.b.head.right.right is None)
 
 
 class TestContains(unittest.TestCase):
