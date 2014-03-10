@@ -9,3 +9,4 @@ script:
   - python test_stack.py
   - python test_queue.py
   - python test_hash_table.py
+  - python test_make_month.py
