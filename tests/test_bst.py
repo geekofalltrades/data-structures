@@ -7,12 +7,19 @@ class TestInsert(unittest.TestCase):
         pass
 
     def test_insert_into_empty_tree(self):
+        """Attempt to insert into an empty tree."""
         pass
 
     def test_insert_to_left(self):
+        """Insert into a tree with a head node a value that should go to
+        the left of the head node.
+        """
         pass
 
     def test_insert_to_right(self):
+        """Insert into a tree with a head node a value that should go to
+        the right of the head node.
+        """
         pass
 
 
@@ -22,15 +29,25 @@ class TestContains(unittest.TestCase):
         pass
 
     def test_contains_on_empty_tree(self):
+        """Test whether an empty tree contains a given value."""
         pass
 
     def test_contains_on_head_node(self):
+        """Test whether a value at the head node is visible to the
+        contains function.
+        """
         pass
 
     def test_contains_on_lower_node(self):
+        """Test whether a value below the head node is visible to the
+        contains function.
+        """
         pass
 
     def test_contains_on_heavily_populated_tree(self):
+        """Test whether a heavily populated tree can find a value inserted
+        near its end.
+        """
         pass
 
 
@@ -40,9 +57,11 @@ class TestSize(unittest.TestCase):
         pass
 
     def test_size_on_empty_tree(self):
+        """Test the size of an empty tree."""
         pass
 
     def test_size_on_populated_tree(self):
+        """Test the size of a populated tree."""
         pass
 
 
@@ -52,12 +71,15 @@ class TestDepth(unittest.TestCase):
         pass
 
     def test_depth_on_empty_tree(self):
+        """Test the depth of an empty tree."""
         pass
 
     def test_depth_on_one_level_tree(self):
+        """Test the depth of a tree with one level (a head node)."""
         pass
 
     def test_depth_on_two_level_tree(self):
+        """Test the depth of a tree with two levels."""
         pass
 
 
@@ -67,15 +89,21 @@ class TestBalance(unittest.TestCase):
         pass
 
     def test_balance_on_empty_tree(self):
+        """Retrieve the balance of an empty tree."""
         pass
 
     def test_balance_on_head_node(self):
+        """Retrieve the balance of a tree with only a head node."""
         pass
 
     def test_balance_on_right_heavy_tree(self):
+        """Retrieve the balance of a tree that is weighted to the right.
+        """
         pass
 
     def test_balance_on_left_heavy_tree(self):
+        """Retrieve the balance of a tree that is weighted to the left.
+        """
         pass
 
 
