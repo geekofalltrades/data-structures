@@ -1,5 +1,6 @@
 import random
 
+
 class BST(object):
     """A binary search tree."""
 
@@ -136,3 +137,56 @@ class BSTNode(object):
             r = random.randint(0, 1e9)
             yield "\tnull%s [shape=point];" % r
             yield "\t%s -> null%s;" % (self.value, r)
+
+
+if __name__ == '__main__':
+    from time import time
+
+    print """
+This tree balances poorly. Inserting 512 sequential values as a
+demonstration."""
+
+    b = BST()
+    for i in range(512):
+        b.insert(i)
+
+    avg = 0
+    for i in range(100):
+        start = time()
+        b.contains(511)
+        stop = time()
+        avg += (stop - start) / 100
+
+    print """
+Finding the last value in the tree took %s seconds
+(average of 100 attempts).""" % avg
+
+    print """
+Now inserting 512 values in an order which naturally balances the tree."""
+
+    b = BST()
+
+    def balanced_generator(val):
+        num = val
+        while num / 2 >= 1:
+            div = num / 2
+            ret = 0
+            while ret < val:
+                ret += div
+                if ret % num:
+                    yield ret
+            num /= 2
+
+    for i in balanced_generator(512):
+        b.insert(i)
+
+    avg = 0
+    for i in range(100):
+        start = time()
+        b.contains(511)
+        stop = time()
+        avg += (stop - start) / 100
+
+    print """
+Finding the last value in the tree took %s seconds
+(average of 100 attempts).""" % avg
