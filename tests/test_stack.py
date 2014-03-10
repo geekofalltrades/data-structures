@@ -1,5 +1,5 @@
 import unittest
-from stack import Stack, EmptyError
+from data_structures.stack import Stack, EmptyError
 
 
 class TestPush(unittest.TestCase):

@@ -1,5 +1,5 @@
 import unittest
-from queue import Queue, EmptyError
+from data_structures.queue import Queue, EmptyError
 
 
 class TestQueue(unittest.TestCase):

@@ -5,8 +5,9 @@ python:
 #install: "pip install -r requirements.txt"
 # command to run tests
 script:
-  - python test_linked_list.py
-  - python test_stack.py
-  - python test_queue.py
-  - python test_hash_table.py
-  - python test_make_month.py
+  - python setup.py install
+  - python tests/test_linked_list.py
+  - python tests/test_stack.py
+  - python tests/test_queue.py
+  - python tests/test_hash_table.py
+  - python tests/test_make_month.py
