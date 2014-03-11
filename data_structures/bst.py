@@ -61,16 +61,19 @@ class BST(object):
 
     def in_order(self):
         """An in-order depth-first traversal of the binary search tree."""
-        return self.head.in_order
+        return self.head.in_order()
 
     def pre_order(self):
         """A pre-order depth-first traversal of the binary search tree."""
+        return self.head.pre_order()
 
     def post_order(self):
         """A post-order depth-first traversal of the binary search tree."""
+        return self.head.post_order()
 
     def breadth_first(self):
         """A breadth-first traversal of the binary search tree."""
+        pass
 
 
 class BSTNode(object):
@@ -123,6 +126,33 @@ class BSTNode(object):
         else:
             return max(self.right.depth(), self.left.depth()) + 1
 
+    def in_order(self):
+        """An in-order depth-first traversal of the subtree beneath this
+        node.
+        """
+        left = self.left.in_order() if self.left else []
+        right = self.right.in_order() if self.right else []
+        return left + [self.value] + right
+
+    def pre_order(self):
+        """A pre-order depth-first traversal of the subtree beneath this
+        node.
+        """
+        left = self.left.pre_order() if self.left else []
+        right = self.right.pre_order() if self.right else []
+        return [self.value] + left + right
+
+    def post_order(self):
+        """A post-order depth-first traversal of the subtree beneath this
+        node.
+        """
+        left = self.left.post_order() if self.left else []
+        right = self.right.post_order() if self.right else []
+        return left + right + [self.value]
+
+    def breadth_first(self):
+        """A breadth-first traversal of the subtree beneath this node."""
+
     def get_dot(self):
         """return the tree with root 'self' as a dot graph for visualization"""
         return "digraph G{\n%s}" % ("" if self.value is None else (
@@ -151,23 +181,17 @@ class BSTNode(object):
             yield "\tnull%s [shape=point];" % r
             yield "\t%s -> null%s;" % (self.value, r)
 
-    def in_order(self):
-        """An in-order depth-first traversal of the subtree beneath this
-        node.
-        """
 
-    def pre_order(self):
-        """A pre-order depth-first traversal of the subtree beneath this
-        node.
-        """
-
-    def post_order(self):
-        """A post-order depth-first traversal of the subtree beneath this
-        node.
-        """
-
-    def breadth_first(self):
-        """A breadth-first traversal of the subtree beneath this node."""
+def balanced_generator(val):
+    num = val
+    while num / 2 >= 1:
+        div = num / 2
+        ret = 0
+        while ret < val:
+            ret += div
+            if ret % num:
+                yield ret
+        num /= 2
 
 
 if __name__ == '__main__':
@@ -196,17 +220,6 @@ Finding the last value in the tree took %s seconds
 Now inserting 512 values in an order which naturally balances the tree."""
 
     b = BST()
-
-    def balanced_generator(val):
-        num = val
-        while num / 2 >= 1:
-            div = num / 2
-            ret = 0
-            while ret < val:
-                ret += div
-                if ret % num:
-                    yield ret
-            num /= 2
 
     for i in balanced_generator(512):
         b.insert(i)
