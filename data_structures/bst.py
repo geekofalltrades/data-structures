@@ -1,4 +1,5 @@
 import random
+from queue import Queue
 
 
 class BST(object):
@@ -73,7 +74,18 @@ class BST(object):
 
     def breadth_first(self):
         """A breadth-first traversal of the binary search tree."""
-        pass
+        nodes = Queue()
+        if self.head:
+            nodes.queue(self.head)
+
+        while(nodes.size()):
+            node = nodes.dequeue()
+            if node.left:
+                nodes.queue(node.left)
+            if node.right:
+                nodes.queue(node.right)
+
+            yield node.value
 
 
 class BSTNode(object):
@@ -161,9 +173,6 @@ class BSTNode(object):
         for i in right:
             yield i
         yield self.value
-
-    def breadth_first(self):
-        """A breadth-first traversal of the subtree beneath this node."""
 
     def get_dot(self):
         """return the tree with root 'self' as a dot graph for visualization"""
