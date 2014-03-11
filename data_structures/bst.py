@@ -132,7 +132,11 @@ class BSTNode(object):
         """
         left = self.left.in_order() if self.left else []
         right = self.right.in_order() if self.right else []
-        return left + [self.value] + right
+        for i in left:
+            yield i
+        yield self.value
+        for i in right:
+            yield i
 
     def pre_order(self):
         """A pre-order depth-first traversal of the subtree beneath this
@@ -140,7 +144,11 @@ class BSTNode(object):
         """
         left = self.left.pre_order() if self.left else []
         right = self.right.pre_order() if self.right else []
-        return [self.value] + left + right
+        yield self.value
+        for i in left:
+            yield i
+        for i in right:
+            yield i
 
     def post_order(self):
         """A post-order depth-first traversal of the subtree beneath this
@@ -148,7 +156,11 @@ class BSTNode(object):
         """
         left = self.left.post_order() if self.left else []
         right = self.right.post_order() if self.right else []
-        return left + right + [self.value]
+        for i in left:
+            yield i
+        for i in right:
+            yield i
+        yield self.value
 
     def breadth_first(self):
         """A breadth-first traversal of the subtree beneath this node."""
