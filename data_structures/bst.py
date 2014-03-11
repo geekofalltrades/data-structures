@@ -59,6 +59,19 @@ class BST(object):
         else:
             return self.head.right.depth() - self.head.left.depth()
 
+    def in_order(self):
+        """An in-order depth-first traversal of the binary search tree."""
+        return self.head.in_order
+
+    def pre_order(self):
+        """A pre-order depth-first traversal of the binary search tree."""
+
+    def post_order(self):
+        """A post-order depth-first traversal of the binary search tree."""
+
+    def breadth_first(self):
+        """A breadth-first traversal of the binary search tree."""
+
 
 class BSTNode(object):
     """A node in a binary search tree."""
@@ -137,6 +150,24 @@ class BSTNode(object):
             r = random.randint(0, 1e9)
             yield "\tnull%s [shape=point];" % r
             yield "\t%s -> null%s;" % (self.value, r)
+
+    def in_order(self):
+        """An in-order depth-first traversal of the subtree beneath this
+        node.
+        """
+
+    def pre_order(self):
+        """A pre-order depth-first traversal of the subtree beneath this
+        node.
+        """
+
+    def post_order(self):
+        """A post-order depth-first traversal of the subtree beneath this
+        node.
+        """
+
+    def breadth_first(self):
+        """A breadth-first traversal of the subtree beneath this node."""
 
 
 if __name__ == '__main__':
