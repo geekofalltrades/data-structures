@@ -37,6 +37,10 @@ characters representing the appropriate day code.
 
 #####bst.py
 A binary search tree. Implements the BST class for import. The tree does
-not balance itself; the first balance inserted will always remain the root.
+not balance itself; the first value inserted will always remain the root.
 Inserting sequentially increasing values can therefore cause the tree to
 become quite unabalanced.
+
+The tree now has four methods of traversal: in\_order, pre\_order, post\_order,
+and breadth\_first. Each of these traversal methods returns a generator
+that iterates over the values in the tree in the specified order.
