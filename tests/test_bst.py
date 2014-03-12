@@ -151,5 +151,21 @@ class TestBalance(unittest.TestCase):
         self.assertEqual(self.b.balance(), -9)
 
 
+class TestInOrder(unittest.TestCase):
+    pass
+
+
+class TestPreOrder(unittest.TestCase):
+    pass
+
+
+class TestPostOrder(unittest.TestCase):
+    pass
+
+
+class TestBreadthFirst(unittest.TestCase):
+    pass
+
+
 if __name__ == '__main__':
     unittest.main()
