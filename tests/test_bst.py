@@ -1,5 +1,5 @@
 import unittest
-from data_structures.bst import BST
+from data_structures.bst import BST, balanced_generator
 from random import shuffle
 
 
@@ -151,20 +151,34 @@ class TestBalance(unittest.TestCase):
         self.assertEqual(self.b.balance(), -9)
 
 
-class TestInOrder(unittest.TestCase):
-    pass
+class TestTraversals(unittest.TestCase):
+    """Test the four traversal algorithms now incorporated into the tree.
+    """
+    def setUp(self):
+        self.b = BST()
+        for i in balanced_generator(8):
+            self.b.insert(i)
 
+        self.in_order = [1, 2, 3, 4, 5, 6, 7]
+        self.pre_order = [4, 2, 1, 3, 6, 5, 7]
+        self.post_order = [1, 3, 2, 5, 7, 6, 4]
+        self.breadth_first = [4, 2, 6, 1, 3, 5, 7]
 
-class TestPreOrder(unittest.TestCase):
-    pass
+    def test_in_order(self):
+        """Test in-order traversal of the tree."""
+        self.assertEqual(list(self.b.in_order()), self.in_order)
 
+    def test_pre_order(self):
+        """Test pre-order traversal of the tree."""
+        self.assertEqual(list(self.b.pre_order()), self.pre_order)
 
-class TestPostOrder(unittest.TestCase):
-    pass
+    def test_post_order(self):
+        """Test post-order traversal of the tree."""
+        self.assertEqual(list(self.b.post_order()), self.post_order)
 
-
-class TestBreadthFirst(unittest.TestCase):
-    pass
+    def test_breadth_first(self):
+        """Test breadth-first traversal of the tree."""
+        self.assertEqual(list(self.b.breadth_first()), self.breadth_first)
 
 
 if __name__ == '__main__':
