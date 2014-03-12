@@ -43,4 +43,6 @@ become quite unabalanced.
 
 The tree now has four methods of traversal: in\_order, pre\_order, post\_order,
 and breadth\_first. Each of these traversal methods returns a generator
-that iterates over the values in the tree in the specified order.
+that iterates over the values in the tree in the specified order. In creating
+these functions, I conferred with [Mark Charyk](https://github.com/markcharyk) about how to create a recursive
+generator.
