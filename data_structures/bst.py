@@ -116,7 +116,7 @@ class BST(object):
                 parent.right = node.right
 
         else:
-            if node.left.depth() > node.right.depth():
+            if node.right.depth() > node.left.depth():
                 prev = node.right
                 new = prev.left
                 while new.left is not None:
@@ -128,15 +128,22 @@ class BST(object):
                     prev = node
                     new = node.left
                 else:
+                    new = prev.right
                     while new.right is not None:
                         prev = new
                         new = new.right
 
+            new.right = node.right
+            new.left = node.left
             if val < parent.value:
                 parent.left = new
             else:
                 parent.right = new
-            prev.left = None
+
+            if new.value < prev.value:
+                prev.left = None
+            else:
+                prev.right = None
 
 
 class BSTNode(object):
