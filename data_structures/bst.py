@@ -87,6 +87,57 @@ class BST(object):
 
             yield node.value
 
+    def delete(self, val):
+        """Remove the node with the given value from the binary search
+        tree.
+        """
+        parent = self.head.pre_place(val)
+        if parent is None:
+            return
+
+        node = parent.left if val < parent.value else parent.right
+
+        if not node.left and not node.right:
+            if val < parent.value:
+                parent.left = None
+            else:
+                parent.right = None
+
+        elif not node.left and node.right:
+            if val < parent.value:
+                parent.left = node.right
+            else:
+                parent.right = node.right
+
+        elif not node.right and node.left:
+            if val < parent.value:
+                parent.left = node.left
+            else:
+                parent.right = node.right
+
+        else:
+            if node.left.depth() > node.right.depth():
+                prev = node.right
+                new = prev.left
+                while new.left is not None:
+                    prev = new
+                    new = new.left
+            else:
+                prev = node.left
+                if not prev.right:
+                    prev = node
+                    new = node.left
+                else:
+                    while new.right is not None:
+                        prev = new
+                        new = new.right
+
+            if val < parent.value:
+                parent.left = new
+            else:
+                parent.right = new
+            prev.left = None
+
 
 class BSTNode(object):
     """A node in a binary search tree."""
@@ -108,6 +159,23 @@ class BSTNode(object):
             return self
         elif val > self.value:
             return self.right.place(val)
+        else:
+            return self
+
+    def pre_place(self, val):
+        """Recursively determine which node is the parent node of the value
+        passed in. If the value does not exist, None is returned.
+        """
+        if val < self.value and not self.left:
+            return None
+        elif val < self.value:
+            return self if self.left.value == val \
+                else self.left.pre_place(val)
+        elif val > self.value and not self.right:
+            return None
+        elif val > self.value:
+            return self if self.right.value == val \
+                else self.right.pre_place(val)
         else:
             return self
 
