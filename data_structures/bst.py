@@ -91,11 +91,17 @@ class BST(object):
         """Remove the node with the given value from the binary search
         tree.
         """
+
+        #import pdb; pdb.set_trace()
+
         parent = self.head.pre_place(val)
         if parent is None:
             return
 
-        node = parent.left if val < parent.value else parent.right
+        if val == self.head.value:
+            node = self.head
+        else:
+            node = parent.left if val < parent.value else parent.right
 
         if not node.left and not node.right:
             if val < parent.value:
