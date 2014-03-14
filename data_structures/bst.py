@@ -104,36 +104,46 @@ class BST(object):
             node = parent.left if val < parent.value else parent.right
 
         if not node.left and not node.right:
-            if val < parent.value:
+            if self.head.value == val:
+                self.head = None
+            elif val < parent.value:
                 parent.left = None
             else:
                 parent.right = None
 
-        elif not node.left and node.right:
-            if val < parent.value:
+        elif not node.left:
+            if self.head.value == val:
+                self.head = self.head.right
+            elif val < parent.value:
                 parent.left = node.right
             else:
                 parent.right = node.right
 
-        elif not node.right and node.left:
-            if val < parent.value:
+        elif not node.right:
+            if self.head.value == val:
+                self.head = self.head.left
+            elif val < parent.value:
                 parent.left = node.left
             else:
-                parent.right = node.right
+                parent.right = node.left
 
         else:
             if node.right.depth() > node.left.depth():
+                #We are guaranteed to have at least one node on the left
+                #and two nodes on the right.
                 prev = node.right
                 new = prev.left
                 while new.left is not None:
                     prev = new
                     new = new.left
             else:
-                prev = node.left
+                #Here we are not guaranteed to have multiple nodes: there
+                #may be only one on each side. So we need to check.
                 if not prev.right:
                     prev = node
                     new = node.left
                 else:
+                    prev = node.left
                     new = prev.right
                     while new.right is not None:
                         prev = new
@@ -164,14 +174,10 @@ class BSTNode(object):
         """Recursively determine the position in the subtree beneath this
         node where a given value lies or should lie.
         """
-        if val < self.value and not self.left:
-            return self
-        elif val < self.value:
-            return self.left.place(val)
-        elif val > self.value and not self.right:
-            return self
+        if val < self.value:
+            return self if not self.left else self.left.place(val)
         elif val > self.value:
-            return self.right.place(val)
+            return self if not self.right else self.right.place(val)
         else:
             return self
 
