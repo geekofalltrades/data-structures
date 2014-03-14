@@ -39,7 +39,8 @@ characters representing the appropriate day code.
 A binary search tree. Implements the BST class for import. The tree does
 not balance itself; the first value inserted will always remain the root.
 Inserting sequentially increasing values can therefore cause the tree to
-become quite unabalanced.
+become quite unabalanced. Credit is due to Cris Ewing for suggesting that
+the left and right nodes of any given node should be handled as properties.
 
 The tree now has four methods of traversal: in\_order, pre\_order, post\_order,
 and breadth\_first. Each of these traversal methods returns a generator
