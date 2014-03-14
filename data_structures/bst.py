@@ -167,8 +167,27 @@ class BSTNode(object):
 
     def __init__(self, value=None):
         self.value = value
-        self.left = None
-        self.right = None
+        self._left = None
+        self._right = None
+        self.parent = None
+
+        @property
+        def left(self):
+            return self._left
+
+        @left.setter
+        def left(self, value):
+            self._left = value
+            self._left.parent = self
+
+        @property
+        def right(self):
+            return self._right
+
+        @right.setter
+        def right(self, value):
+            self._right = value
+            self._right.parent = self
 
     def place(self, val):
         """Recursively determine the position in the subtree beneath this
