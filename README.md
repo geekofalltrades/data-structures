@@ -47,3 +47,7 @@ and breadth\_first. Each of these traversal methods returns a generator
 that iterates over the values in the tree in the specified order. In creating
 these functions, I conferred with [Mark Charyk](https://github.com/markcharyk) about how to create a recursive
 generator.
+
+Node deletion is now supported with the delete method, which takes as its
+argument the value to be deleted. It returns the node object deleted, or
+None if no node was deleted.
