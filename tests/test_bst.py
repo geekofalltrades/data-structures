@@ -188,11 +188,6 @@ class TestDelete(unittest.TestCase):
         for i in balanced_generator(8):
             self.b.insert(i)
 
-        self.in_order = [1, 2, 3, 4, 5, 6, 7]
-        self.pre_order = [4, 2, 1, 3, 6, 5, 7]
-        self.post_order = [1, 3, 2, 5, 7, 6, 4]
-        self.breadth_first = [4, 2, 6, 1, 3, 5, 7]
-
     def test_delete_from_empty_tree(self):
         """Verify that deleting from an empty tree is a no-op."""
         self.b = BST()
@@ -201,40 +196,69 @@ class TestDelete(unittest.TestCase):
 
     def test_delete_value_not_in_tree(self):
         """Verify that deleting a value not in the tree is a no-op."""
-        start = list(self.b.in_order())
+        expected = list(self.b.in_order())
         self.assertIsNone(self.b.delete(10))
-        end = list(self.b.in_order())
-        self.assertEqual(start, end)
+        actual = list(self.b.in_order())
+        self.assertEqual(expected, actual)
 
     def test_delete_node_with_no_children(self):
         """Delete a node with no children and assert that the tree assumes
         the expected structure.
         """
-        pass
+        expected = list(self.b.in_order())
+        expected.remove(1)
+        self.assertEqual(self.b.delete(1).value, 1)
+        actual = list(self.b.in_order())
+        self.assertEqual(expected, actual)
 
     def test_delete_node_with_right_children(self):
         """Delete a node with only right children and assert that the
         tree assumes the expected structure.
         """
-        pass
+        self.b.insert(9)
+        self.b.insert(8)
+        self.b.insert(10)
+        expected = list(self.b.in_order())
+        expected.remove(7)
+        self.assertEqual(self.b.delete(7).value, 7)
+        actual = list(self.b.in_order())
+        self.assertEqual(expected, actual)
 
     def test_delete_node_with_left_children(self):
         """Delete a node with only left children and assert that the
         tree assumes the expected structure.
         """
-        pass
+        self.b.insert(10)
+        self.b.insert(9)
+        self.b.insert(8)
+        expected = list(self.b.in_order())
+        expected.remove(10)
+        self.assertEqual(self.b.delete(10).value, 10)
+        actual = list(self.b.in_order())
+        self.assertEqual(expected, actual)
 
     def test_delete_node_with_both_children(self):
         """Delete a node that has left and right children and assert that
         it assumes the expected structure.
         """
-        pass
+        self.b.insert(10)
+        self.b.insert(9)
+        self.b.insert(8)
+        expected = list(self.b.in_order())
+        expected.remove(6)
+        self.assertEqual(self.b.delete(6).value, 6)
+        actual = list(self.b.in_order())
+        self.assertEqual(expected, actual)
 
     def test_delete_head_node(self):
         """Delete the nead node and assert that the tree assumes the
         expcected structure.
         """
-        pass
+        expected = list(self.b.in_order())
+        expected.remove(4)
+        self.assertEqual(self.b.delete(4).value, 4)
+        actual = list(self.b.in_order())
+        self.assertEqual(expected, actual)
 
 
 if __name__ == '__main__':

@@ -134,8 +134,6 @@ class BST(object):
                     while new.right:
                         new = new.right
 
-            import pdb; pdb.set_trace()
-
             new = self.delete(new.value)
             new.right = node.right
             new.left = node.left
