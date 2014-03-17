@@ -24,9 +24,7 @@ class BST(object):
         if not self.head:
             return False
 
-        node = self.head.place(val)
-
-        if node.value == val:
+        if self.head.place(val).value == val:
             return True
         else:
             return False
@@ -91,41 +89,38 @@ class BST(object):
         """Remove the node with the given value from the binary search
         tree.
         """
+        if not self.head:
+            return None
 
-        #import pdb; pdb.set_trace()
-
-        parent = self.head.pre_place(val)
-        if parent is None:
-            return
-
-        if val == self.head.value:
-            node = self.head
-        else:
-            node = parent.left if val < parent.value else parent.right
+        node = self.head.place(val)
+        if node.value != val:
+            return None
 
         if not node.left and not node.right:
-            if self.head.value == val:
+            if node is self.head:
                 self.head = None
-            elif val < parent.value:
-                parent.left = None
+            elif val < node.parent.value:
+                node.parent.left = None
             else:
-                parent.right = None
+                node.parent.right = None
 
         elif not node.left:
-            if self.head.value == val:
-                self.head = self.head.right
-            elif val < parent.value:
-                parent.left = node.right
+            if node is self.head:
+                self.head = node.right
+                self.head.parent = None
+            elif val < node.parent.value:
+                node.parent.left = node.right
             else:
-                parent.right = node.right
+                node.parent.right = node.right
 
         elif not node.right:
-            if self.head.value == val:
-                self.head = self.head.left
-            elif val < parent.value:
-                parent.left = node.left
+            if node is self.head:
+                self.head = node.left
+                self.head.parent = None
+            elif val < node.parent.value:
+                node.parent.left = node.left
             else:
-                parent.right = node.left
+                node.parent.right = node.left
 
         else:
             if node.right.depth() > node.left.depth():
@@ -178,7 +173,8 @@ class BSTNode(object):
     @left.setter
     def left(self, value):
         self._left = value
-        self._left.parent = self
+        if self._left is not None:
+            self._left.parent = self
 
     @property
     def right(self):
@@ -187,7 +183,8 @@ class BSTNode(object):
     @right.setter
     def right(self, value):
         self._right = value
-        self._right.parent = self
+        if self._right is not None:
+            self._right.parent = self
 
     def place(self, val):
         """Recursively determine the position in the subtree beneath this
