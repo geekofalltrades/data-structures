@@ -171,23 +171,23 @@ class BSTNode(object):
         self._right = None
         self.parent = None
 
-        @property
-        def left(self):
-            return self._left
+    @property
+    def left(self):
+        return self._left
 
-        @left.setter
-        def left(self, value):
-            self._left = value
-            self._left.parent = self
+    @left.setter
+    def left(self, value):
+        self._left = value
+        self._left.parent = self
 
-        @property
-        def right(self):
-            return self._right
+    @property
+    def right(self):
+        return self._right
 
-        @right.setter
-        def right(self, value):
-            self._right = value
-            self._right.parent = self
+    @right.setter
+    def right(self, value):
+        self._right = value
+        self._right.parent = self
 
     def place(self, val):
         """Recursively determine the position in the subtree beneath this
@@ -200,22 +200,22 @@ class BSTNode(object):
         else:
             return self
 
-    def pre_place(self, val):
-        """Recursively determine which node is the parent node of the value
-        passed in. If the value does not exist, None is returned.
-        """
-        if val < self.value and not self.left:
-            return None
-        elif val < self.value:
-            return self if self.left.value == val \
-                else self.left.pre_place(val)
-        elif val > self.value and not self.right:
-            return None
-        elif val > self.value:
-            return self if self.right.value == val \
-                else self.right.pre_place(val)
-        else:
-            return self
+    # def pre_place(self, val):
+    #     """Recursively determine which node is the parent node of the value
+    #     passed in. If the value does not exist, None is returned.
+    #     """
+    #     if val < self.value and not self.left:
+    #         return None
+    #     elif val < self.value:
+    #         return self if self.left.value == val \
+    #             else self.left.pre_place(val)
+    #     elif val > self.value and not self.right:
+    #         return None
+    #     elif val > self.value:
+    #         return self if self.right.value == val \
+    #             else self.right.pre_place(val)
+    #     else:
+    #         return self
 
     def size(self):
         """Recursively count the number of nodes that lie beneath this
