@@ -181,5 +181,61 @@ class TestTraversals(unittest.TestCase):
         self.assertEqual(list(self.b.breadth_first()), self.breadth_first)
 
 
+class TestDelete(unittest.TestCase):
+    """Test the delete method of the binary search tree."""
+    def setUp(self):
+        self.b = BST()
+        for i in balanced_generator(8):
+            self.b.insert(i)
+
+        self.in_order = [1, 2, 3, 4, 5, 6, 7]
+        self.pre_order = [4, 2, 1, 3, 6, 5, 7]
+        self.post_order = [1, 3, 2, 5, 7, 6, 4]
+        self.breadth_first = [4, 2, 6, 1, 3, 5, 7]
+
+    def test_delete_from_empty_tree(self):
+        """Verify that deleting from an empty tree is a no-op."""
+        self.b = BST()
+        self.assertIsNone(self.b.delete(10))
+        self.assertIsNone(self.b.head)
+
+    def test_delete_value_not_in_tree(self):
+        """Verify that deleting a value not in the tree is a no-op."""
+        start = list(self.b.in_order())
+        self.assertIsNone(self.b.delete(10))
+        end = list(self.b.in_order())
+        self.assertEqual(start, end)
+
+    def test_delete_node_with_no_children(self):
+        """Delete a node with no children and assert that the tree assumes
+        the expected structure.
+        """
+        pass
+
+    def test_delete_node_with_right_children(self):
+        """Delete a node with only right children and assert that the
+        tree assumes the expected structure.
+        """
+        pass
+
+    def test_delete_node_with_left_children(self):
+        """Delete a node with only left children and assert that the
+        tree assumes the expected structure.
+        """
+        pass
+
+    def test_delete_node_with_both_children(self):
+        """Delete a node that has left and right children and assert that
+        it assumes the expected structure.
+        """
+        pass
+
+    def test_delete_head_node(self):
+        """Delete the nead node and assert that the tree assumes the
+        expcected structure.
+        """
+        pass
+
+
 if __name__ == '__main__':
     unittest.main()
