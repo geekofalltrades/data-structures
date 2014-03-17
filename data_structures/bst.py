@@ -163,6 +163,8 @@ class BSTNode(object):
 
     @left.setter
     def left(self, value):
+        if self._left is not None:
+            self._left.parent = None
         self._left = value
         if self._left is not None:
             self._left.parent = self
@@ -173,6 +175,8 @@ class BSTNode(object):
 
     @right.setter
     def right(self, value):
+        if self._right is not None:
+            self._right.parent = None
         self._right = value
         if self._right is not None:
             self._right.parent = self
