@@ -9,7 +9,7 @@ class TestInsertionSort(unittest.TestCase):
         """Sort 1000 randomly generated lists of numbers and assure that
         their output matches that of Python's built-in sort.
         """
-        for i in range(1000):
+        for i in range(100):
             li = [randrange(0, 1000000) for x in range(1000)]
             expected = sorted(li)
             insertion_sort(li)
