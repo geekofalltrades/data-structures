@@ -51,3 +51,11 @@ generator.
 Node deletion is now supported with the delete method, which takes as its
 argument the value to be deleted. It returns the node object deleted, or
 None if no node was deleted.
+
+#####insertion_sort.py
+Implements the insertion sort algorithm as insertion_sort. This function
+takes a list as an argument and sorts it in place, returning None. The
+function was designed with Python lists in mind, and makes use of indexing,
+pop(), and insert(). In theory, any interable which implements direct access
+with square bracket syntax and insert() and pop() methods that behave as
+Python's list equivalents do should be sortable with this implementation.
