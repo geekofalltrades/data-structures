@@ -123,38 +123,29 @@ class BST(object):
                 node.parent.right = node.left
 
         else:
-            if node.right.depth() > node.left.depth():
-                #We are guaranteed to have at least one node on the left
-                #and two nodes on the right.
-                prev = node.right
-                new = prev.left
-                while new.left is not None:
-                    prev = new
-                    new = new.left
+            if node.right.depth() >= node.left.depth():
+                new = node.right
+                if new.left:
+                    while new.left:
+                        new = new.left
             else:
-                #Here we are not guaranteed to have multiple nodes: there
-                #may be only one on each side. So we need to check.
-                if not prev.right:
-                    prev = node
-                    new = node.left
-                else:
-                    prev = node.left
-                    new = prev.right
-                    while new.right is not None:
-                        prev = new
+                new = node.left
+                if new.right:
+                    while new.right:
                         new = new.right
 
+            new = self.delete(new)
             new.right = node.right
             new.left = node.left
-            if val < parent.value:
-                parent.left = new
-            else:
-                parent.right = new
 
-            if new.value < prev.value:
-                prev.left = None
+            if node is self.head:
+                self.head = new
+            elif val < node.parent.value:
+                node.parent.left = new
             else:
-                prev.right = None
+                node.parent.right = new
+
+        return node
 
 
 class BSTNode(object):
