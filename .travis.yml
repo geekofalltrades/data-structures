@@ -11,3 +11,4 @@ script:
   - python tests/test_queue.py
   - python tests/test_hash_table.py
   - python tests/test_make_month.py
+  - python tests/test_insertion_sort.py
