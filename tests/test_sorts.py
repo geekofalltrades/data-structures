@@ -25,7 +25,7 @@ class TestSorts(unittest.TestCase):
         for i in range(100):
             li = [randrange(0, 1000000) for x in range(100)]
             expected = sorted(li)
-            merge_sort(li)
+            li = merge_sort(li)
             self.assertEqual(expected, li)
 
     def test_insertion_sort_against_merge_sort(self):
@@ -36,7 +36,7 @@ class TestSorts(unittest.TestCase):
             insertion = [randrange(0, 1000000) for x in range(100)]
             merge = insertion[:]
             insertion_sort(insertion)
-            merge_sort(merge)
+            merge = merge_sort(merge)
             self.assertEqual(insertion, merge)
 
 
