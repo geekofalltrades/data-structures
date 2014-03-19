@@ -52,19 +52,19 @@ Node deletion is now supported with the delete method, which takes as its
 argument the value to be deleted. It returns the node object deleted, or
 None if no node was deleted.
 
-#####sorts.py
+#####Assorted Sorts
 Implementations of various sorting algorithms. These functions were designed
 with Python lists in mind, and make use of indexing, pop(), insert(), and
 append(). In theory, any interable which implements direct access with
 square bracket syntax and insert(), pop(), and append() methods that behave
 as Python's list equivalents do should be sortable with these implementations.
-######insertion_sort
+######insertion_sort.py
 Implements the insertion sort algorithm as insertion_sort. This function
 takes a list as an argument and sorts it in place, returning None.
-######merge_sort
+######merge_sort.py
 Implements the merge sort algorithm as merge_sort. This function does not
 sort in place, instead returning a sorted copy of the list originally
 passed in.
-######quicksort
+######quicksort.py
 Implements the quicksort algorithm as quicksort. This function does not
 sort in place.
