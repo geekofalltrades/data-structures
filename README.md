@@ -65,3 +65,6 @@ takes a list as an argument and sorts it in place, returning None.
 Implements the merge sort algorithm as merge_sort. This function does not
 sort in place, instead returning a sorted copy of the list originally
 passed in.
+######quicksort
+Implements the quicksort algorithm as quicksort. This function does not
+sort in place.
