@@ -93,7 +93,7 @@ class TestSorts(unittest.TestCase):
             radix = [randrange(0, 1000000) for x in range(100)]
             insertion = radix[:]
             radix = radix_sort(radix)
-            insertion = insertion_sort(insertion)
+            insertion_sort(insertion)
             self.assertEqual(radix, insertion)
 
     def test_radix_sort_against_merge_sort(self):
