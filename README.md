@@ -68,3 +68,6 @@ passed in.
 ######quicksort.py
 Implements the quicksort algorithm as quicksort. This function does not
 sort in place.
+######radix_sort.py
+Implements the radix\_sort algorithm as radix\_sort. Does not sort in
+place, instead returning a new copy of the list.
