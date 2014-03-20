@@ -69,5 +69,6 @@ passed in.
 Implements the quicksort algorithm as quicksort. This function does not
 sort in place.
 ######radix_sort.py
-Implements the radix\_sort algorithm as radix\_sort. Does not sort in
-place, instead returning a new copy of the list.
+Implements the radix\_sort algorithm. radix\_sort\_int is used on integers,
+while radix\_sort\_str is used on strings. Does not sort in place, instead
+returning a new copy of the list.
