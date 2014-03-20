@@ -1,7 +1,7 @@
 from data_structures.insertion_sort import insertion_sort
 from data_structures.merge_sort import merge_sort
 from data_structures.quicksort import quicksort
-from data_structures.radix_sort import radix_sort
+from data_structures.radix_sort import radix_sort_int, radix_sort_str
 import unittest
 from random import randrange, choice
 from string import letters
@@ -50,7 +50,7 @@ class TestSorts(unittest.TestCase):
         for i in range(100):
             li = [randrange(0, 1000000) for x in range(100)]
             expected = sorted(li)
-            li = radix_sort(li)
+            li = radix_sort_int(li)
             self.assertEqual(expected, li)
 
     def test_insertion_sort_against_merge_sort(self):
@@ -93,7 +93,7 @@ class TestSorts(unittest.TestCase):
         for i in range(100):
             radix = [randrange(0, 1000000) for x in range(100)]
             insertion = radix[:]
-            radix = radix_sort(radix)
+            radix = radix_sort_int(radix)
             insertion_sort(insertion)
             self.assertEqual(radix, insertion)
 
@@ -104,7 +104,7 @@ class TestSorts(unittest.TestCase):
         for i in range(100):
             radix = [randrange(0, 1000000) for x in range(100)]
             merge = radix[:]
-            radix = radix_sort(radix)
+            radix = radix_sort_int(radix)
             merge = merge_sort(merge)
             self.assertEqual(radix, merge)
 
@@ -115,7 +115,7 @@ class TestSorts(unittest.TestCase):
         for i in range(100):
             radix = [randrange(0, 1000000) for x in range(100)]
             quick = radix[:]
-            radix = radix_sort(radix)
+            radix = radix_sort_int(radix)
             quick = quicksort(quick)
             self.assertEqual(radix, quick)
 
@@ -127,7 +127,7 @@ class TestSorts(unittest.TestCase):
             radix = [''.join(choice(letters) for i in range(randrange(100)))
                      for i in range(100)]
             native = radix[:]
-            radix = radix_sort(radix)
+            radix = radix_sort_str(radix)
             native = sorted(native)
             self.assertEqual(radix, native)
 
