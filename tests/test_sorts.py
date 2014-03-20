@@ -3,7 +3,8 @@ from data_structures.merge_sort import merge_sort
 from data_structures.quicksort import quicksort
 from data_structures.radix_sort import radix_sort
 import unittest
-from random import randrange
+from random import randrange, choice
+from string import letters
 
 
 class TestSorts(unittest.TestCase):
@@ -117,6 +118,18 @@ class TestSorts(unittest.TestCase):
             radix = radix_sort(radix)
             quick = quicksort(quick)
             self.assertEqual(radix, quick)
+
+    def test_radix_sort_on_strings(self):
+        """Sort 100 randomly generated lists of strings composed of random
+        letters and assert that they come out in lexicographical order.
+        """
+        for i in range(100):
+            radix = [''.join(choice(letters) for i in range(randrange(100)))
+                     for i in range(100)]
+            native = radix[:]
+            radix = radix_sort(radix)
+            native = sorted(native)
+            self.assertEqual(radix, native)
 
 if __name__ == '__main__':
     unittest.main()
