@@ -27,34 +27,30 @@ def quicksort(li):
 
 if __name__ == '__main__':
     print """
-The quicksort algorithm performs respectably are lists that are unordered.
-On a completely random list with 100 values:
+The quicksort algorithm performs respectably on lists that are unordered.
+On a completely random list with 1000 values:
 """
 
-    avg = 0
+    quick_avg = 0
+    native_avg = 0
     for i in range(50):
-        li = [randrange(100000) for i in range(100)]
+        li = [randrange(100000) for i in range(1000)]
         start = time()
         quicksort(li)
         end = time()
-        avg += (end - start) / 50
-
-    print """quicksort: %s (average of 50 attempts)""" % avg
-
-    avg = 0
-    for i in range(50):
-        li = [randrange(100000) for i in range(100)]
+        quick_avg += (end - start) / 1000
         start = time()
         sorted(li)
         end = time()
-        avg += (end - start) / 50
+        native_avg += (end - start) / 1000
 
-    print """Native sort: %s (average of 50 attempts)""" % avg
+    print """quicksort: %s (average of 50 attempts)""" % quick_avg
+    print """Native sort: %s (average of 50 attempts)""" % native_avg
 
     print """
 The best case performance for my specific implementation, which chooses
 the rightmost element of the list as pivot, is a list that is already
-sorted. On a list of sequential values 100 items long:
+sorted. On a list of sequential values 1000 items long:
 """
 
     avg = 0
@@ -63,24 +59,19 @@ sorted. On a list of sequential values 100 items long:
         start = time()
         quicksort(li)
         end = time()
-        avg += (end - start) / 50
-
-    print """quicksort: %s (average of 50 attempts)""" % avg
-
-    avg = 0
-    for i in range(50):
-        li = [i for i in range(100)]
+        quick_avg += (end - start) / 1000
         start = time()
         sorted(li)
         end = time()
-        avg += (end - start) / 50
+        native_avg += (end - start) / 1000
 
-    print """Native sort: %s (average of 50 attempts)""" % avg
+    print """quicksort: %s (average of 50 attempts)""" % quick_avg
+    print """Native sort: %s (average of 50 attempts)""" % native_avg
 
     print """
 The worst case for my implementation is then a list sorted in reverse
 order, as this requires that every item in the list be moved. On a list
-of 100 values sorted in descending order:
+of 1000 values sorted in descending order:
 """
 
     avg = 0
@@ -89,16 +80,11 @@ of 100 values sorted in descending order:
         start = time()
         quicksort(li)
         end = time()
-        avg += (end - start) / 50
-
-    print """quicksort: %s (average of 50 attempts)""" % avg
-
-    avg = 0
-    for i in range(50):
-        li = [i for i in range(100, 0, -1)]
+        quick_avg += (end - start) / 1000
         start = time()
         sorted(li)
         end = time()
-        avg += (end - start) / 50
+        native_avg += (end - start) / 1000
 
-    print """Native sort: %s (average of 50 attempts)""" % avg
+    print """quicksort: %s (average of 50 attempts)""" % quick_avg
+    print """Native sort: %s (average of 50 attempts)""" % native_avg
