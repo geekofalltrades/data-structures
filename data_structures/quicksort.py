@@ -38,11 +38,11 @@ On a completely random list with 1000 values:
         start = time()
         quicksort(li)
         end = time()
-        quick_avg += (end - start) / 1000
+        quick_avg += (end - start) / 50
         start = time()
         sorted(li)
         end = time()
-        native_avg += (end - start) / 1000
+        native_avg += (end - start) / 50
 
     print """quicksort: %s (average of 50 attempts)""" % quick_avg
     print """Native sort: %s (average of 50 attempts)""" % native_avg
@@ -59,11 +59,11 @@ sorted. On a list of sequential values 1000 items long:
         start = time()
         quicksort(li)
         end = time()
-        quick_avg += (end - start) / 1000
+        quick_avg += (end - start) / 50
         start = time()
         sorted(li)
         end = time()
-        native_avg += (end - start) / 1000
+        native_avg += (end - start) / 50
 
     print """quicksort: %s (average of 50 attempts)""" % quick_avg
     print """Native sort: %s (average of 50 attempts)""" % native_avg
@@ -80,11 +80,11 @@ of 1000 values sorted in descending order:
         start = time()
         quicksort(li)
         end = time()
-        quick_avg += (end - start) / 1000
+        quick_avg += (end - start) / 50
         start = time()
         sorted(li)
         end = time()
-        native_avg += (end - start) / 1000
+        native_avg += (end - start) / 50
 
     print """quicksort: %s (average of 50 attempts)""" % quick_avg
     print """Native sort: %s (average of 50 attempts)""" % native_avg
