@@ -13,9 +13,7 @@ def radix_sort_int(inlist):
     base = 10
     divisor = base
 
-    buckets = []
-    for i in range(base):
-        buckets.append(Queue())
+    buckets = [Queue() for i in range(base)]
 
     digits = 1
     i = 0
