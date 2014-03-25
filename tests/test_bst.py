@@ -261,5 +261,11 @@ class TestDelete(unittest.TestCase):
         self.assertEqual(expected, actual)
 
 
+class TestRebalance(unittest.TestCase):
+    """Test that the tree remains balanced as values are inserted."""
+    def setUp(self):
+        self.b = BST()
+
+
 if __name__ == '__main__':
     unittest.main()
