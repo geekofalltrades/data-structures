@@ -151,52 +151,70 @@ class BST(object):
 
     def rebalance(self, node):
         """Rebalance the tree about the given node."""
-        #If we are trying to rebalance on the head node, no rebalancing
-        #can be done. Terminate recursion.
 
-        import pdb; pdb.set_trace()
+        #import pdb; pdb.set_trace()
 
         #If the tree is skewed to the left.
         if node.balance() < -1:
             #If we have the left-right case, perform a left rotation of
             #the right child of this node's left child.
             if node.left.balance() > 0:
-                node.left, node.left.right, node.left.right.left = \
-                    node.left.right, node.left.right.left, node.left
+                self._left_rotation(node.left.right)
             #We are now guaranteed to have the left-left case. Perform a
             #right rotation of this node's left child.
-            if node is self.head:
-                self.head, node.left, self.head.right = \
-                    node.left, node.left.right, node
-            elif node is node.parent.left:
-                node.parent.left, node.left, node.parent.left.right = \
-                    node.left, node.left.right, node
-            else:
-                node.parent.right, node.left, node.left.right = \
-                    node.left, node.left.right, node
+            self._right_rotation(node.left)
 
         #If the tree is skewed to the right.
         elif node.balance() > 1:
             #If we have the right-left case, perform a right rotation of
             #the left child of this node's right child.
             if node.right.balance() < 0:
-                node.right, node.right.left, node.right.left.right = \
-                    node.right.left, node.right.left.right, node.right
+                self._right_rotation(node.right.left)
             #We are now guaranteed to have the right-right case. Perform
             #a left rotation of this node's right child.
-            if node is self.head:
-                self.head, node.right, self.head.left = \
-                    node.right, node.right.left, node
-            if node is node.parent.left:
-                node.parent.left, node.right, node.right.left = \
-                    node.right, node.right.left, node
-            else:
-                node.parent.right, node.right, node.right.left = \
-                    node.right, node.right.left, node
+            self._left_rotation(node.right)
+
+        #If this node has become the head of the tree, unset its parent.
+        if node is self.head:
+            node.parent = None
 
         #Recurse until the entire tree has been rebalanced.
         if node.parent:
             self.rebalance(node.parent)
+
+    def _right_rotation(self, node):
+        """Perform a right rotation of this node with its parent. Assumes
+        that the incoming node always has a parent (is not the head of
+        the tree).
+        """
+        parent = node.parent
+        child = node.right
+        if parent is self.head:
+            self.head, node.right, parent.left = \
+                node, parent, child
+        elif parent is parent.parent.left:
+            parent.parent.left, node.right, parent.left = \
+                node, parent, child
+        else:
+            parent.parent.right, node.right, parent.left = \
+                node, parent, child
+
+    def _left_rotation(self, node):
+        """Perform a left rotation of this node with its parent. Assumes
+        that the incoming node always has a parent (is not the head of
+        the tree).
+        """
+        parent = node.parent
+        child = node.left
+        if parent is self.head:
+            self.head, node.left, parent.right = \
+                node, parent, child
+        elif parent is parent.parent.left:
+            parent.parent.left, node.left, parent.right = \
+                node, parent, child
+        else:
+            parent.parent.right, node.left, parent.right = \
+                node, parent, child
 
 
 class BSTNode(object):
@@ -214,8 +232,6 @@ class BSTNode(object):
 
     @left.setter
     def left(self, value):
-        if self._left is not None:
-            self._left.parent = None
         self._left = value
         if self._left is not None:
             self._left.parent = self
@@ -226,8 +242,6 @@ class BSTNode(object):
 
     @right.setter
     def right(self, value):
-        if self._right is not None:
-            self._right.parent = None
         self._right = value
         if self._right is not None:
             self._right.parent = self
