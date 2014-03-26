@@ -134,21 +134,23 @@ class TestBalance(unittest.TestCase):
         self.b.insert(7)
         self.assertEqual(self.b.balance(), 0)
 
-    def test_balance_on_right_heavy_tree(self):
-        """Retrieve the balance of a tree that is weighted to the right.
-        """
-        for i in range(10):
-            self.b.insert(i)
+    #With AVL self-balancing, the following two tests become meaningless.
 
-        self.assertEqual(self.b.balance(), 9)
+    # def test_balance_on_right_heavy_tree(self):
+    #     """Retrieve the balance of a tree that is weighted to the right.
+    #     """
+    #     for i in range(10):
+    #         self.b.insert(i)
 
-    def test_balance_on_left_heavy_tree(self):
-        """Retrieve the balance of a tree that is weighted to the left.
-        """
-        for i in range(9, -1, -1):
-            self.b.insert(i)
+    #     self.assertEqual(self.b.balance(), 9)
 
-        self.assertEqual(self.b.balance(), -9)
+    # def test_balance_on_left_heavy_tree(self):
+    #     """Retrieve the balance of a tree that is weighted to the left.
+    #     """
+    #     for i in range(9, -1, -1):
+    #         self.b.insert(i)
+
+    #     self.assertEqual(self.b.balance(), -9)
 
 
 class TestTraversals(unittest.TestCase):
@@ -252,7 +254,7 @@ class TestDelete(unittest.TestCase):
 
     def test_delete_head_node(self):
         """Delete the nead node and assert that the tree assumes the
-        expcected structure.
+        expected structure.
         """
         expected = list(self.b.in_order())
         expected.remove(4)
@@ -265,6 +267,21 @@ class TestRebalance(unittest.TestCase):
     """Test that the tree remains balanced as values are inserted."""
     def setUp(self):
         self.b = BST()
+
+    def test_self_balancing_insertion(self):
+        """Add 100 lists of shuffled values between 0 and 100 to the tree
+        and assert that its values remain ordered and intact while its
+        balance remains between -1 and 1.
+        """
+        for i in range(100):
+            li = range(100)
+            shuffle(li)
+
+            for num in li:
+                self.b.insert(num)
+
+            self.assertEqual(sorted(li), list(self.b.in_order()))
+            self.assertTrue(-1 <= self.b.balance() <= 1)
 
 
 if __name__ == '__main__':
