@@ -19,6 +19,8 @@ class BST(object):
             elif val > parent.value:
                 parent.right = BSTNode(val)
 
+            self.rebalance(parent)
+
     def contains(self, val):
         """Test whether the binary search tree contains a given value."""
         if not self.head:
@@ -152,6 +154,8 @@ class BST(object):
         #If we are trying to rebalance on the head node, no rebalancing
         #can be done. Terminate recursion.
 
+        import pdb; pdb.set_trace()
+
         #If the tree is skewed to the left.
         if node.balance() < -1:
             #If we have the left-right case, perform a left rotation of
@@ -162,10 +166,10 @@ class BST(object):
             #We are now guaranteed to have the left-left case. Perform a
             #right rotation of this node's left child.
             if node is self.head:
-                self.head, node.left, node.left.right = \
+                self.head, node.left, self.head.right = \
                     node.left, node.left.right, node
             elif node is node.parent.left:
-                node.parent.left, node.left, node.left.right = \
+                node.parent.left, node.left, node.parent.left.right = \
                     node.left, node.left.right, node
             else:
                 node.parent.right, node.left, node.left.right = \
@@ -181,7 +185,7 @@ class BST(object):
             #We are now guaranteed to have the right-right case. Perform
             #a left rotation of this node's right child.
             if node is self.head:
-                self.head, node.right, node.right.left = \
+                self.head, node.right, self.head.left = \
                     node.right, node.right.left, node
             if node is node.parent.left:
                 node.parent.left, node.right, node.right.left = \
