@@ -52,6 +52,12 @@ Node deletion is now supported with the delete method, which takes as its
 argument the value to be deleted. It returns the node object deleted, or
 None if no node was deleted.
 
+The BST now self-balances according to the AVL specification. Whenever a
+value is inserted or deleted, the balance of all subtrees containing that
+value are recursively checked, terminating at the root of the tree. If the
+balance at any step is found to be above 1 or below -1, appropriate rotations
+are performed to bring the tree back into balance.
+
 #####Assorted Sorts
 Implementations of various sorting algorithms. These functions were designed
 with Python lists in mind, and make use of indexing, pop(), insert(), and
