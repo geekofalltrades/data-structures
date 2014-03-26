@@ -147,6 +147,26 @@ class BST(object):
 
         return node
 
+    def rebalance(self, node):
+        """Rebalance the tree about the given node."""
+        #If we are trying to rebalance on the head node, no rebalancing
+        #can be done. Terminate recursion.
+        if node == self.head:
+            return
+
+        #If the tree is skewed to the left.
+        if node.balance() < -1:
+            pass
+            #We are now guaranteed to have the left-left case.
+
+        #If the tree is skewed to the right.
+        elif node.balance() > 1:
+            pass
+            #We are now guaranteed to have the right-right case.
+
+        #Recurse until the entire tree has been rebalanced.
+        self.rebalance(node.parent)
+
 
 class BSTNode(object):
     """A node in a binary search tree."""
@@ -235,6 +255,20 @@ class BSTNode(object):
             return 0
         else:
             return max(self.right.depth(), self.left.depth()) + 1
+
+    def balance(self):
+        """Get the balance the subtree rooted at this node. Positive value
+        for a right-heavy tree, a negative value for a left-heavy tree. An
+        ideally balanced tree has a balance of 0.
+        """
+        if not self.right and not self.left:
+            return 0
+        elif not self.right:
+            return -self.depth()
+        elif not self.left:
+            return self.depth()
+        else:
+            return self.right.depth() - self.left.depth()
 
     def in_order(self):
         """An in-order depth-first traversal of the subtree beneath this
