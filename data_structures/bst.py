@@ -151,21 +151,48 @@ class BST(object):
         """Rebalance the tree about the given node."""
         #If we are trying to rebalance on the head node, no rebalancing
         #can be done. Terminate recursion.
-        if node == self.head:
-            return
 
         #If the tree is skewed to the left.
         if node.balance() < -1:
-            pass
-            #We are now guaranteed to have the left-left case.
+            #If we have the left-right case, perform a left rotation of
+            #the right child of this node's left child.
+            if node.left.balance() > 0:
+                node.left, node.left.right, node.left.right.left = \
+                    node.left.right, node.left.right.left, node.left
+            #We are now guaranteed to have the left-left case. Perform a
+            #right rotation of this node's left child.
+            if node is self.head:
+                self.head, node.left, node.left.right = \
+                    node.left, node.left.right, node
+            elif node is node.parent.left:
+                node.parent.left, node.left, node.left.right = \
+                    node.left, node.left.right, node
+            else:
+                node.parent.right, node.left, node.left.right = \
+                    node.left, node.left.right, node
 
         #If the tree is skewed to the right.
         elif node.balance() > 1:
-            pass
-            #We are now guaranteed to have the right-right case.
+            #If we have the right-left case, perform a right rotation of
+            #the left child of this node's right child.
+            if node.right.balance() < 0:
+                node.right, node.right.left, node.right.left.right = \
+                    node.right.left, node.right.left.right, node.right
+            #We are now guaranteed to have the right-right case. Perform
+            #a left rotation of this node's right child.
+            if node is self.head:
+                self.head, node.right, node.right.left = \
+                    node.right, node.right.left, node
+            if node is node.parent.left:
+                node.parent.left, node.right, node.right.left = \
+                    node.right, node.right.left, node
+            else:
+                node.parent.right, node.right, node.right.left = \
+                    node.right, node.right.left, node
 
         #Recurse until the entire tree has been rebalanced.
-        self.rebalance(node.parent)
+        if node.parent:
+            self.rebalance(node.parent)
 
 
 class BSTNode(object):
