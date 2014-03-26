@@ -147,6 +147,9 @@ class BST(object):
             else:
                 node.parent.right = new
 
+        if node.parent:
+            self.rebalance(node.parent)
+
         return node
 
     def rebalance(self, node):

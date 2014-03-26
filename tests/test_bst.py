@@ -283,6 +283,22 @@ class TestRebalance(unittest.TestCase):
             self.assertEqual(sorted(li), list(self.b.in_order()))
             self.assertTrue(-1 <= self.b.balance() <= 1)
 
+    def test_self_balancing_deletion(self):
+        """Populate a tree with the values between 0 and 100. Then
+        remove all values in random order. Repeat 100 times. Assert that
+        every tree remains balanced after every step.
+        """
+        for i in range(100):
+            li = range(100)
+            for num in li:
+                self.b.insert(num)
+
+            shuffle(li)
+
+            for num in li:
+                self.b.delete(num)
+                self.assertTrue(-1 <= self.b.balance() <= 1)
+
 
 if __name__ == '__main__':
     unittest.main()
